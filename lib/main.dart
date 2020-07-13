@@ -15,15 +15,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.teal,
           accentColor: Colors.tealAccent,
-          canvasColor: Color.fromRGBO(210, 224, 218, 1),
+          canvasColor: Color.fromRGBO(220, 215, 220, 1),
           textTheme: ThemeData.light().textTheme.copyWith(
-              bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-              bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
-              headline6: TextStyle(
-                fontSize: 20,
-                fontFamily: 'RobotoCondensed',
-                fontWeight: FontWeight.bold,
-              ))),
+                bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+                bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
+                headline6: TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'RobotoCondensed',
+                  fontWeight: FontWeight.bold,
+                ),
+                headline5: TextStyle(
+                  fontSize: 24,
+                  fontFamily: 'RobotoCondensed',
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
       home: CategoriesScreen(),
       routes: {
         CategoryMealsScreen.routeName: (ctx) => CategoryMealsScreen(),
