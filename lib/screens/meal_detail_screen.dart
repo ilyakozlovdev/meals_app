@@ -1,29 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import '../widgets/card_of_items.dart';
 import '../services/dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
-
-  Card buildCardOfItems(
-      {@required String title,
-      @required List<Widget> items,
-      @required context}) {
-    return Card(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
-        child: Column(
-          children: [
-            Container(
-                child:
-                    Text(title, style: Theme.of(context).textTheme.headline5)),
-            ...items
-          ],
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +30,7 @@ class MealDetailScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              buildCardOfItems(
+              CardOfItems(
                   title: 'Ingredients',
                   items: selectedMeal.ingredients.map((item) {
                     return Card(
@@ -67,9 +48,8 @@ class MealDetailScreen extends StatelessWidget {
                         ),
                       ),
                     );
-                  }).toList(),
-                  context: context),
-              buildCardOfItems(
+                  }).toList()),
+              CardOfItems(
                   title: 'Steps',
                   items: selectedMeal.steps.map((item) {
                     final int stepCount = selectedMeal.steps.indexOf(item);
@@ -91,8 +71,7 @@ class MealDetailScreen extends StatelessWidget {
                         ),
                       ),
                     );
-                  }).toList(),
-                  context: context)
+                  }).toList())
             ],
           ),
         ]));
