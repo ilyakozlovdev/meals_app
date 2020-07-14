@@ -7,8 +7,7 @@ class MealDetailScreen extends StatelessWidget {
 
   Card buildCardOfItems(
       {@required String title,
-      @required List<String> items,
-      Color itemColor = Colors.teal,
+      @required List<Widget> items,
       @required context}) {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -19,21 +18,7 @@ class MealDetailScreen extends StatelessWidget {
             Container(
                 child:
                     Text(title, style: Theme.of(context).textTheme.headline5)),
-            ...items.map((item) => Card(
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  color: Theme.of(context).primaryColor,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                    child: Container(
-                      width: double.infinity,
-                      child: Text(
-                        item,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ))
+            ...items
           ],
         ),
       ),
@@ -49,7 +34,9 @@ class MealDetailScreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text(selectedMeal.title),
+          title: Text(
+            selectedMeal.title,
+          ),
         ),
         body: ListView(children: [
           Column(
@@ -63,9 +50,49 @@ class MealDetailScreen extends StatelessWidget {
                 ),
               ),
               buildCardOfItems(
-                  context: context,
-                  items: selectedMeal.ingredients,
-                  title: 'Ingredients')
+                  title: 'Ingredients',
+                  items: selectedMeal.ingredients.map((item) {
+                    return Card(
+                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      color: Colors.amber,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4, horizontal: 8),
+                        child: Container(
+                          width: double.infinity,
+                          child: Text(
+                            '- $item',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  context: context),
+              buildCardOfItems(
+                  title: 'Steps',
+                  items: selectedMeal.steps.map((item) {
+                    final int stepCount = selectedMeal.steps.indexOf(item);
+                    return Container(
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          radius: 22,
+                          backgroundColor: Colors.pink,
+                          child: Text(
+                            '# ${stepCount + 1}',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        title: Text(
+                          '$item',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                  context: context)
             ],
           ),
         ]));
