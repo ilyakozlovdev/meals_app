@@ -5,7 +5,7 @@ class CategoryItem extends StatelessWidget {
   final String id;
   final String title;
   final Color color;
-  static const double borderRadius = 15;
+  static const double borderRadius = 5;
 
   const CategoryItem({this.title, this.color, this.id});
 

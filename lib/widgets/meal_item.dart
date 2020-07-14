@@ -9,6 +9,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final double rating;
   final Complexity complexity;
+  final double borderRadius = 5;
 
   const MealItem(
       {this.complexity,
@@ -40,8 +41,8 @@ class MealItem extends StatelessWidget {
     return InkWell(
       onTap: () => selectMeal(context),
       child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius)),
           elevation: 4,
           margin: EdgeInsets.all(10),
           child: Column(
@@ -50,8 +51,8 @@ class MealItem extends StatelessWidget {
                 children: <Widget>[
                   ClipRRect(
                     borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15)),
+                        topLeft: Radius.circular(borderRadius),
+                        topRight: Radius.circular(borderRadius)),
                     child: Image.network(
                       imageUrl,
                       height: 250,
