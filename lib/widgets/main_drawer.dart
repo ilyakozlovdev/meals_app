@@ -27,11 +27,16 @@ class MainDrawer extends StatelessWidget {
           Container(
             height: 120,
             width: double.infinity,
-            padding: EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
-            child: Text(
-              'Cooking',
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 30),
+            color: Theme.of(context).primaryColor,
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 25,
+              ),
+              title: Text('Ilya Kozlov',
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18)),
+              subtitle: Text('Mobile developer'),
             ),
           ),
           SizedBox(
