@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.teal,
           accentColor: Colors.tealAccent,
           canvasColor: Color.fromRGBO(220, 215, 220, 1),
+          cardColor: Color.fromRGBO(244, 247, 242, 1),
           textTheme: ThemeData.light().textTheme.copyWith(
                 bodyText1: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
                 bodyText2: TextStyle(color: Color.fromRGBO(20, 51, 51, 1)),
