@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import '../screens/meal_detail_screen.dart';
 import '../models/meal.dart';
 
@@ -12,12 +13,12 @@ class MealItem extends StatelessWidget {
   final double borderRadius = 5;
 
   const MealItem(
-      {this.complexity,
-      this.duration,
-      this.imageUrl,
-      this.rating,
-      this.title,
-      this.id});
+      {@required this.complexity,
+      @required this.duration,
+      @required this.imageUrl,
+      @required this.rating,
+      @required this.title,
+      @required this.id});
 
   String get complexityText {
     switch (complexity) {
@@ -33,7 +34,9 @@ class MealItem extends StatelessWidget {
   }
 
   void selectMeal(context) {
-    Navigator.of(context).pushNamed(MealDetailScreen.routeName, arguments: id);
+    Navigator.of(context)
+        .pushNamed(MealDetailScreen.routeName, arguments: id)
+        .then((mealId) {});
   }
 
   @override

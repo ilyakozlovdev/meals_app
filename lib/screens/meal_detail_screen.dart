@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import '../widgets/card_of_items.dart';
 import '../services/dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
+  final Function toggleMeal;
+  final Function isMealFavourite;
+
+  MealDetailScreen({this.toggleMeal, this.isMealFavourite});
 
   @override
   Widget build(BuildContext context) {
-    final id = ModalRoute.of(context).settings.arguments;
-    final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == id);
+    final mealId = ModalRoute.of(context).settings.arguments;
+    final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
     final mediaQuery = MediaQuery.of(context);
     final deviceHeight = mediaQuery.size.height;
 
@@ -18,6 +21,19 @@ class MealDetailScreen extends StatelessWidget {
           title: Text(
             selectedMeal.title,
           ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.star,
+                color: isMealFavourite(selectedMeal.id)
+                    ? Colors.amber
+                    : Colors.grey,
+              ),
+              onPressed: () {
+                toggleMeal(mealId);
+              },
+            )
+          ],
         ),
         body: ListView(children: [
           Column(
